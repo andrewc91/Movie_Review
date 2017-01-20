@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Add a Movie</title>
+
+    <!--load bootstrap here-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Add a New Movie and a Review</h1>
+
+      {% if messages %}
+        {% for message in messages %}
+          {% if "director" in message.tags %}
+            <li>{{message}}</li>
+          {% endif %}
+        {% endfor %}
+      {% endif %}
+
+      {% if messages %}
+        {% for message in messages %}
+          {% if "movie" in message.tags %}
+            <li>{{message}}</li>
+          {% endif %}
+        {% endfor %}
+      {% endif %}
+
+      <form class="form-horizontal" action="{% url 'movies:create' %}" method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+          <label class="col-sm-2 control-label">Movie Title:</label>
+          <div class="col-sm-4">
+            <input type="text" class="form-control" name="movie" placeholder="Enter Movie Here">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-sm-2 control-label">Director:</label>
+        </div>
+
+        <div class="form-group">
+          <label class="col-sm-3 control-label">Choose from the list:</label>
+          <div class="col-sm-4">
+            <select class="form-control" name="select_director">
+              <option>1</option>
+              <option>2</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-sm-3 control-label">Or add a new director:</label>
+          <div class="col-sm-4">
+            <input type="text" class="form-control" name="director" placeholder="Enter Director Here">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-sm-3 control-label">Review:</label>
+          <div class="col-sm-4">
+            <textarea class="form-control" name="description"></textarea>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-sm-3 control-label">Rating:</label>
+          <div class="col-sm-4">
+            <select class="form-control" name="rating">
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+            </select>
+          </div>
+        </div>
+
+        <a class="btn btn-info" href="{% url 'movies:index' %}">Go Back</a>
+        <input type="submit" class="btn btn-info" value="Add Movie and Review">
+
+      </form>
+    </div>
+  </body>
+</html>

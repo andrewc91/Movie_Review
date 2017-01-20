@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Movie Reviews Dashboard</title>
+    <!--load bootstrap here-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Welcome to the dashboard {{user.first_name}} {{user.last_name}}</h1>
+
+      <a class="btn btn-info" href="{% url 'users:logout' %}">Log Out</a>
+      <a class="btn btn-info" href="{% url 'movies:new' %}">Add Movie and Review</a>
+      <a class="btn btn-info" href="{% url 'movies:watch' %}">Watch Movie?</a>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Registration Page</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'login_app/css/style.css' %}" charset="utf-8">
+  </head>
+  <body>
+    <h1 style="text-align: center">Registration</h1>
+    <div class="container">
+
+      {% if messages %}
+        {% for message in messages %}
+          {% if "register" in message.tags %}
+            <li>{{message}}</li>
+          {% endif %}
+        {% endfor %}
+      {% endif %}
+
+      <form class="form-horizontal" action="/register" method="POST">
+        {% csrf_token %}
+
+        <div class="form-group">
+          <label class="col-sm-2 control-label">First Name:</label>
+          <div class="col-sm-4">
+            <input type="text" class="form-control" name="first_name" placeholder="Enter First Name">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-sm-2 control-label">Last Name:</label>
+          <div class="col-sm-4">
+            <input type="text" class="form-control" name="last_name" placeholder="Enter Last Name">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-sm-2 control-label">Email:</label>
+          <div class="col-sm-4">
+            <input type="text" class="form-control" name="email" placeholder="Enter Email Here">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-sm-2 control-label">Password:</label>
+          <div class="col-sm-4">
+            <input type="password" class="form-control" name="password" placeholder="Enter Password Here">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-sm-2 control-label">Confirm Password:</label>
+          <div class="col-sm-4">
+            <input type="password" class="form-control" name="confirm" placeholder="Confirm Password Here">
+          </div>
+        </div>
+        <a href="{% url 'users:index' %}" class="btn btn-info" style="margin-left: 370px">Go Back</a>
+        <input style="margin-left: 20px" type="submit" class="btn btn-info" value="Register">
+      </form>
+    </div>
+  </body>
+</html>

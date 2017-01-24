@@ -10,18 +10,18 @@ class DirectorManager(models.Manager):
     def director_validator(self, input):
         errors = []
 
-        if len(input['director']) == 0:
+        if len(input['new_director']) == 0:
             errors.append("Please enter a director")
 
-        if len(input['director']) < 5:
+        elif len(input['new_director']) < 5:
             errors.append("Director's name must have at least 5 characters")
 
-        if not name_regex.match(input['director']):
+        if not name_regex.match(input['new_director']):
             errors.append("Director's name must have letters only")
 
         if len(errors) == 0:
-            Director.objects.create(name=input['director'])
-            return (True, "Successfully added director")
+            # Director.objects.create(name=input['new_director'])
+            return (True, ["Director input valid. Please fix other errors"])
         else:
             return (False, errors)
 
@@ -38,12 +38,12 @@ class MovieManager(models.Manager):
         if len(input['movie']) == 0:
             errors.append("Please enter a movie")
 
-        if len(input['movie']) < 2:
+        elif len(input['movie']) < 2:
             errors.append("Movie must have at least 2 characters")
 
         if len(errors) == 0:
-            Movie.objects.create(title=input['movie'])
-            return (True, "Successfully added movie")
+            # Movie.objects.create(title=input['movie'], director=director)
+            return (True, ["Movie input valid. Please fix other errors"])
         else:
             return (False, errors)
 
@@ -61,20 +61,20 @@ class ReviewManager(models.Manager):
         if len(input['description']) == 0:
             errors.append("Please enter a description")
 
-        if len(input['description']) < 5:
+        elif len(input['description']) < 5:
             errors.append("Description must be at least 5 characters. Be descriptive!")
 
         if not (input['rating']):
             errors.append("Please select a rating for this movie")
 
         if len(errors) == 0:
-            Review.objects.create(description=input['description'], rating=input['rating'])
-            return (True, "Successfully added review")
+            # Review.objects.create(description=input['description'], rating=input['rating'])
+            return (True, ["Review input valid. Please fix other errors"])
         else:
             return (False, errors)
 
 class Review(models.Model):
-    description = models.TextField
+    description = models.TextField()
     rating = models.IntegerField()
     user = models.ForeignKey(User)
     movie = models.ForeignKey(Movie)

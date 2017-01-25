@@ -61,7 +61,13 @@ def create(request):
             review = Review.objects.create(**context)
             return redirect(reverse('movies:index'))
 
-def show(request):
+def show(request, id):
     if not 'user_id' in request.session:
         return redirect(reverse('users:index'))
-    return render(request, 'movie_app/show.html')
+
+    user = User.objects.get(id=request.session['user_id'])
+    context = {
+        'user': user,
+        'reviews': Review.objects.all(),
+    }
+    return render(request, 'movie_app/show.html', context)

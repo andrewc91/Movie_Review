@@ -3,8 +3,27 @@
   <head>
     <meta charset="utf-8">
     <title>Your Profile</title>
+    <!--load bootstrap here-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   </head>
   <body>
-    <h1>This is your profile! You are id #{{user.id}}</h1>
+    <div class="container">
+      <h1>This is your profile! You are {{user.first_name}}</h1>
+      <a class="btn btn-info" href="{% url 'movies:index' %}">Home</a>
+      <a class="btn btn-info" href="{% url 'movies:new' %}">Add Movie and Review</a>
+      <a class="btn btn-info" href="{% url 'movies:show' user.id %}">Your Reviews</a>
+      <a class="btn btn-info" href="{% url 'movies:watch' %}">Watch Movie?</a>
+      <a class="btn btn-info" href="{% url 'users:logout' %}">Log Out</a>
+
+      {% for review in reviews %}
+        {% if review.user.id == user.id %}
+        <h2>{{review.movie.title}}</h2>
+        {% endif %}
+      {% endfor %}
+    </div>
   </body>
 </html>

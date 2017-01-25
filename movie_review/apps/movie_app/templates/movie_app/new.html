@@ -58,7 +58,7 @@
             <select class="form-control" name="select_director">
               <option value="" disabled selected>Choose a Director</option>
                 {% for director in directors %}
-                <option>{{director.name}}</option>
+                <option value="{{director.id}}">{{director.name}}</option>
                 {% endfor %}
             </select>
           </div>

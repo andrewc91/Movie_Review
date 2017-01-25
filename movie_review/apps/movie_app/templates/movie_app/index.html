@@ -17,6 +17,7 @@
       <a class="btn btn-info" href="{% url 'users:logout' %}">Log Out</a>
       <a class="btn btn-info" href="{% url 'movies:new' %}">Add Movie and Review</a>
       <a class="btn btn-info" href="{% url 'movies:watch' %}">Watch Movie?</a>
+      <a class="btn btn-info" href="{% url 'movies:show' %}">Your Reviews</a>
 
       <h2>Recent Book Reviews</h2><br>
       {% for review in reviews %}

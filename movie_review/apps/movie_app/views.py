@@ -60,8 +60,6 @@ def create(request):
             }
             review = Review.objects.create(**context)
 
-            
-
             return redirect(reverse('movies:index'))
 
 def show(request, id):
@@ -74,3 +72,9 @@ def show(request, id):
         'reviews': Review.objects.all(),
     }
     return render(request, 'movie_app/show.html', context)
+
+def movie(request, id):
+    if not 'user_id' in request.session:
+        return redirect(reverse('users:index'))
+        
+    return render(request, 'movie_app/showMovie.html')

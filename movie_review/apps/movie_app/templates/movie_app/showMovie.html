@@ -26,7 +26,9 @@
       {% for review in reviews %}
         <h3>Rating: {{review.rating}}</h3>
         <h3><a href="{% url 'movies:show' id=review.user.id %}">{{review.user.first_name}}</a> says: {{review.description}}</h3>
+        <h5>Posted on {{review.created_at}}</h5>
       {% endfor %}
+      
     </div>
   </body>
 </html>

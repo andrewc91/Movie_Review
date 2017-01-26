@@ -78,4 +78,10 @@ def movie(request, id):
     if not 'user_id' in request.session:
         return redirect(reverse('users:index'))
 
-    return render(request, 'movie_app/showMovie.html')
+    reviews = Review.objects.filter(movie_id=id)
+    context = {
+        'movie': Movie.objects.get(id=id),
+        'reviews': reviews,
+    }
+
+    return render(request, 'movie_app/showMovie.html', context)

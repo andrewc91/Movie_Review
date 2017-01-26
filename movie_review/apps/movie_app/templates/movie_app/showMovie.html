@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Book Chat</title>
+    <title>Movie Chat</title>
     <!--load bootstrap here-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <!-- Optional theme -->
@@ -18,7 +18,15 @@
       <a class="btn btn-info" href="{% url 'movies:watch' %}">Watch Movie?</a>
       <a class="btn btn-info" href="{% url 'users:logout' %}">Log Out</a>
 
-      <h1>This is show  page for movie </h1>
+      <h1>{{movie.title}}</h1>
+      <h3>Director: {{movie.director.name}}</h3>
+
+      <h1>Reviews:</h1>
+
+      {% for review in reviews %}
+        <h3>Rating: {{review.rating}}</h3>
+        <h3><a href="{% url 'movies:show' id=review.user.id %}">{{review.user.first_name}}</a> says: {{review.description}}</h3>
+      {% endfor %}
     </div>
   </body>
 </html>

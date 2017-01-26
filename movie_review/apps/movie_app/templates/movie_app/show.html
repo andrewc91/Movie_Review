@@ -12,6 +12,7 @@
   </head>
   <body>
     <div class="container">
+
       <a class="btn btn-info" href="{% url 'movies:index' %}">Home</a>
       <a class="btn btn-info" href="{% url 'movies:new' %}">Add Movie and Review</a>
       <a class="btn btn-info" href="{% url 'movies:show' user.id %}">Your Reviews</a>
@@ -24,7 +25,7 @@
       <h2>Posted Reviews on the following movies: </h2>
       {% for review in reviews %}
         {% if review.user.id == user.id %}
-        <h3>&nbsp;&nbsp;{{review.movie.title}}</h3>
+        <h3>&nbsp;&nbsp;<a href="{% url 'movies:movie' review.movie.id %}">{{review.movie.title}}</a></h3>
         {% endif %}
       {% endfor %}
     </div>

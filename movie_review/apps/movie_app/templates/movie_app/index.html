@@ -20,11 +20,11 @@
       <a class="btn btn-info" href="{% url 'movies:watch' %}">Watch Movie?</a>
       <a class="btn btn-info" href="{% url 'users:logout' %}">Log Out</a>
 
-      <h2>Recent Movie Reviews</h2><br>
+      <h2>Recent Movie Reviews</h2>
       {% for review in reviews %}
         <h3><a href="{% url 'movies:movie' id=review.movie.id %}">{{review.movie.title}}</a></h3>
         <h4>Rating: {{review.rating}}</h4>
-        <h4>{{review.user.first_name}} says: {{review.description}}<h4>
+        <h4><a href="{% url 'movies:show' id=review.user.id %}">{{review.user.first_name}}</a> says: {{review.description}}<h4>
         <h5>Posted on {{review.created_at}}</h5>
       {% endfor %}
     </div>

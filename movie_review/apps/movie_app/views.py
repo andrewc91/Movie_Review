@@ -66,15 +66,16 @@ def show(request, id):
     if not 'user_id' in request.session:
         return redirect(reverse('users:index'))
 
-    user = User.objects.get(id=request.session['user_id'])
+    reviews = Review.objects.filter(user_id=id)
     context = {
-        'user': user,
-        'reviews': Review.objects.all(),
+        'user': User.objects.get(id=id),
+        'movie': Movie.objects.get(id=id),
+        'reviews': reviews,
     }
     return render(request, 'movie_app/show.html', context)
 
 def movie(request, id):
     if not 'user_id' in request.session:
         return redirect(reverse('users:index'))
-        
+
     return render(request, 'movie_app/showMovie.html')

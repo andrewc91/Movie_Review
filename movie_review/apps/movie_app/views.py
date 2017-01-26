@@ -59,6 +59,7 @@ def create(request):
                 'description': request.POST['description'],
             }
             review = Review.objects.create(**context)
+
             
 
             return redirect(reverse('movies:index'))

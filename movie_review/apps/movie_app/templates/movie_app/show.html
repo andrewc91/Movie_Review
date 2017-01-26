@@ -12,16 +12,20 @@
   </head>
   <body>
     <div class="container">
-      <h1>This is your profile! You are {{user.first_name}}</h1>
       <a class="btn btn-info" href="{% url 'movies:index' %}">Home</a>
       <a class="btn btn-info" href="{% url 'movies:new' %}">Add Movie and Review</a>
       <a class="btn btn-info" href="{% url 'movies:show' user.id %}">Your Reviews</a>
       <a class="btn btn-info" href="{% url 'movies:watch' %}">Watch Movie?</a>
       <a class="btn btn-info" href="{% url 'users:logout' %}">Log Out</a>
 
+      <h1>Name: {{user.first_name}} {{user.last_name}}</h1>
+      <h3>Email: {{user.email}}</h3>
+      <h3>Reviews Posted: {{reviews.count}}</h3>
+
+      <h2>Posted Reviews on the following movies: </h2>
       {% for review in reviews %}
         {% if review.user.id == user.id %}
-        <h2>{{review.movie.title}}</h2>
+        <h3>&nbsp;&nbsp;{{review.movie.title}}</h3>
         {% endif %}
       {% endfor %}
     </div>

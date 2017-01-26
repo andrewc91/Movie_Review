@@ -20,7 +20,7 @@
       <a class="btn btn-info" href="{% url 'movies:watch' %}">Watch Movie?</a>
       <a class="btn btn-info" href="{% url 'users:logout' %}">Log Out</a>
 
-      <h2>Recent Book Reviews</h2><br>
+      <h2>Recent Movie Reviews</h2><br>
       {% for review in reviews %}
         <h3>{{review.movie.title}}</h3>
         <h4>Rating: {{review.rating}}</h4>

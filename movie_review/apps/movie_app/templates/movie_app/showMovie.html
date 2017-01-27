@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'movie_app/css/style.css' %}" charset="utf-8">
   </head>
   <body>
     <div class="container">
@@ -19,16 +21,18 @@
       <a class="btn btn-info" href="{% url 'users:logout' %}">Log Out</a>
 
       <h1>{{movie.title}}</h1>
-      <h3>Director: {{movie.director.name}}</h3>
+      <h3>Director: {{movie.director.name}}</h3><br>
 
       <h1>Reviews:</h1>
+      <hr>
 
       {% for review in reviews %}
         <h3>Rating: {{review.rating}}</h3>
         <h3><a href="{% url 'movies:show' id=review.user.id %}">{{review.user.first_name}}</a> says: {{review.description}}</h3>
         <h5>Posted on {{review.created_at}}</h5>
+        <hr>
       {% endfor %}
-      
+
     </div>
   </body>
 </html>

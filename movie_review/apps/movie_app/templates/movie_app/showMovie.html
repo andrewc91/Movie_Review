@@ -30,6 +30,9 @@
         <h3>Rating: {{review.rating}}</h3>
         <h3><a href="{% url 'movies:show' id=review.user.id %}">{{review.user.first_name}}</a> says: {{review.description}}</h3>
         <h5>Posted on {{review.created_at}}</h5>
+        {% if review.user.id == request.session.user_id %}
+          <a class="btn btn-danger" href="{% url 'movies:delete' id=review.id %}">Delete</a>
+        {% endif %}
         <hr>
       {% endfor %}
 

@@ -83,5 +83,7 @@ def movie(request, id):
         'movie': Movie.objects.get(id=id),
         'reviews': reviews,
     }
-
     return render(request, 'movie_app/showMovie.html', context)
+
+def delete(request, id):
+    pass

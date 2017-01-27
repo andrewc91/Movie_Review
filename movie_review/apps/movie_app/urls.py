@@ -7,5 +7,6 @@ urlpatterns = [
     url(r'^watch$', views.watch, name="watch"),
     url(r'^create$', views.create, name="create"),
     url(r'^show/(?P<id>\d+)$', views.show, name="show"),
-    url(r'^movie/(?P<id>\d+)$', views.movie, name="movie")
+    url(r'^movie/(?P<id>\d+)$', views.movie, name="movie"),
+    url(r'^delete/(?P<id>\d+)$', views.delete, name="delete")
 ]

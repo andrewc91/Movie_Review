@@ -86,4 +86,17 @@ def movie(request, id):
     return render(request, 'movie_app/showMovie.html', context)
 
 def delete(request, id):
-    pass
+    Review.objects.get(id=id).delete()
+    return redirect(reverse('movies:index'))
+
+def create_review(request, id):
+    if request.method == 'POST':
+        context = {
+            'user': User.objects.get(id=request.session['user_id']),
+            'movie': Movie.objects.get(id=id),
+            'rating': request.POST['rating'],
+            'description': request.POST['description'],
+        }
+
+        review = Review.objects.create(**context)
+        return redirect(reverse('movies:movie', kwargs={'id':review.movie.id}))

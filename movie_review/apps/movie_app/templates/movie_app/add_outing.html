@@ -22,6 +22,15 @@
 
 
       <h1>Add a Movie Night Out Here</h1>
+
+      {% if messages %}
+        {% for message in messages %}
+          {% if "outing" in message.tags %}
+            <li>{{message}}</li>
+          {% endif %}
+        {% endfor %}
+      {% endif %}
+
       <form class="form-horizontal" action="{% url 'movies:add_outing' %}" method="POST">
         {% csrf_token %}
         <div class="form-group">

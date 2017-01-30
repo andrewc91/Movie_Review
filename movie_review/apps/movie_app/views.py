@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, HttpResponse
 from django.core.urlresolvers import reverse
 from ..login_app.models import User
-from .models import Director, Movie, Review
+from .models import Director, Movie, Review, Outing
 from django.contrib import messages
 
 # Create your views here.
@@ -96,7 +96,7 @@ def create_review(request, id):
         }
 
         review = Review.objects.create(**context)
-        return redirect(reverse('movies:movie', kwargs={'id':review.movie.id}))
+        return redirect(reverse('movies:showMovie', kwargs={'id':review.movie.id}))
 
 def watch(request):
     if not 'user_id' in request.session:
@@ -117,4 +117,17 @@ def add(request):
     return render(request, 'movie_app/add_outing.html', context)
 
 def add_outing(request):
+    if request.method == 'POST':
+        user = User.objects.get(id=request.session['user_id'])
+        result = Outing.objects.outing_validator(request.POST, user)
+
+        if result[0] == True:
+            messages.success(request, result[1])
+            return redirect(reverse('movies:watch'))
+        else:
+            for error in result[1]:
+                messages.error(request, error, extra_tags="outing")
+            return redirect(reverse('movies:add'))
+
+
     return redirect(reverse('movies:watch'))

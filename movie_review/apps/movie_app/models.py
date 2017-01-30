@@ -99,11 +99,10 @@ class OutingManager(models.Manager):
         if len(errors) == 0:
             outing = Outing.objects.create(movie=input['movie_out'], location=input['location_out'], theater=input['theater_out'], date=start_date, user=user)
             outing.group.add(user)
-            return (True, "Successfully added movie outing to your schedule")
+            return (True, ["Successfully added movie outing to your schedule"])
 
         else:
             return (False, errors)
-
 
 class Outing(models.Model):
     movie = models.CharField(max_length=100)

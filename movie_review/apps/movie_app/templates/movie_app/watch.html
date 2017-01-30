@@ -14,8 +14,67 @@
 
     <div class="container">
       <h1>Watch a Movie</h1>
-      <a class="btn btn-info" href="{% url 'movies:index' %}">Back Home</a>
+      <a class="btn btn-info" href="{% url 'movies:index' %}">Home</a>
+      <a class="btn btn-info" href="{% url 'movies:new' %}">Add Movie and Review</a>
+      <a class="btn btn-info" href="{% url 'movies:show' user.id %}">Your Reviews</a>
+      <a class="btn btn-info" href="{% url 'movies:watch' %}">Watch Movie?</a>
+      <a class="btn btn-info" href="{% url 'users:logout' %}">Log Out</a>
+
+      <a class="btn btn-info" href="{% url 'movies:add_outing' %}">Add a Movie Night Out</a>
+
+
+      <h1>Your Plans</h1>
+      <table>
+        <thead>
+          <tr>
+            <th>Movie</th>
+            <th>Location</th>
+            <th>Date</th>
+            <th>Theater</th>
+            <th>Remove?</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Movies</td>
+            <td>Seattle</td>
+            <td>February 14, 2017</td>
+            <td>8:55 PM</td>
+            <td>JOIN</td>
+          </tr>
+        </tbody>
+      </table>
+
+
+      <h1>Plans Available</h1>
+      <table>
+        <thead>
+          <tr>
+            <th>Movie</th>
+            <th>Location</th>
+            <th>Date</th>
+            <th>Theater</th>
+            <th>Join?</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Batman</td>
+            <td>Bellevue</td>
+            <td>February 10, 2017</td>
+            <td>Lincoln Square</td>
+            <td>Join Or Cancel</td>
+          </tr>
+        </tbody>
+      </table>
+
+
+
+
+
+
+
+
     </div>
-    
   </body>
 </html>

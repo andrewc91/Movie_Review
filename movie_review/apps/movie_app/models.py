@@ -81,3 +81,17 @@ class Review(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     objects = ReviewManager()
+
+class OutingManager(models.Manager):
+    def outing_validator(self, input):
+        pass
+
+class Outing(models.Model):
+    movie = models.CharField(max_length=100)
+    location = models.CharField(max_length=100)
+    date = models.DateField()
+    theater = models.CharField(max_length=100)
+    user = models.ForeignKey(User)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    objects = OutingManager()

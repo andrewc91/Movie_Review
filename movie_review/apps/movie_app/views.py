@@ -26,11 +26,6 @@ def new(request):
     }
     return render(request, 'movie_app/new.html', context)
 
-def watch(request):
-    if not 'user_id' in request.session:
-        return redirect(reverse('users:index'))
-    return render(request, 'movie_app/watch.html')
-
 def create(request):
     if request.method == 'POST':
         result_director = Director.objects.director_validator(request.POST)
@@ -74,7 +69,7 @@ def show(request, id):
     }
     return render(request, 'movie_app/show.html', context)
 
-def movie(request, id):
+def showMovie(request, id):
     if not 'user_id' in request.session:
         return redirect(reverse('users:index'))
 
@@ -100,3 +95,13 @@ def create_review(request, id):
 
         review = Review.objects.create(**context)
         return redirect(reverse('movies:movie', kwargs={'id':review.movie.id}))
+
+def watch(request):
+    if not 'user_id' in request.session:
+        return redirect(reverse('users:index'))
+    return render(request, 'movie_app/watch.html')
+
+def add_outing(request):
+    if not 'user_id' in request.session:
+        return redirect(reverse('users:index'))
+    return render(request, 'movie_app/add_outing.html')

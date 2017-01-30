@@ -1,6 +1,7 @@
 from __future__ import unicode_literals
 from django.db import models
 from ..login_app.models import User
+from datetime import datetime
 import re
 
 name_regex = re.compile(r"^[a-zA-Z\s]+$")
@@ -83,8 +84,26 @@ class Review(models.Model):
     objects = ReviewManager()
 
 class OutingManager(models.Manager):
-    def outing_validator(self, input):
-        pass
+    def outing_validator(self, input, user):
+        errors = []
+
+        if len(input['movie_out']) == 0 or len(input['location_out']) == 0 or len(input['theater_out']) == 0 or len(input['date_out']) == 0:
+            errors.append("Please fill out all fields")
+
+        if len(input['date_out']) > 0:
+            start_date = datetime.strptime(input['date_out'], "%Y-%m-%d")
+
+            if datetime.today() >= start_date:
+                errors.append('Start date must be in the future')
+
+        if len(errors) == 0:
+            outing = Outing.objects.create(movie=input['movie_out'], location=input['location_out'], theater=input['theater_out'], date=start_date, user=user)
+            outing.group.add(user)
+            return (True, "Successfully added movie outing to your schedule")
+
+        else:
+            return (False, errors)
+
 
 class Outing(models.Model):
     movie = models.CharField(max_length=100)
@@ -92,6 +111,7 @@ class Outing(models.Model):
     date = models.DateField()
     theater = models.CharField(max_length=100)
     user = models.ForeignKey(User)
+    group = models.ManyToManyField(User, related_name="movie")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     objects = OutingManager()

@@ -23,6 +23,7 @@ def new(request):
 
     context = {
         "directors": Director.objects.all(),
+        'user': User.objects.get(id=request.session['user_id']),
     }
     return render(request, 'movie_app/new.html', context)
 
@@ -75,6 +76,7 @@ def showMovie(request, id):
 
     reviews = Review.objects.filter(movie_id=id)
     context = {
+        'user': User.objects.get(id=request.session['user_id']),
         'movie': Movie.objects.get(id=id),
         'reviews': reviews,
     }
@@ -99,9 +101,20 @@ def create_review(request, id):
 def watch(request):
     if not 'user_id' in request.session:
         return redirect(reverse('users:index'))
-    return render(request, 'movie_app/watch.html')
 
-def add_outing(request):
+    context = {
+        'user': User.objects.get(id=request.session['user_id']),
+    }
+    return render(request, 'movie_app/watch.html', context)
+
+def add(request):
     if not 'user_id' in request.session:
         return redirect(reverse('users:index'))
-    return render(request, 'movie_app/add_outing.html')
+
+    context = {
+        'user': User.objects.get(id=request.session['user_id']),
+    }
+    return render(request, 'movie_app/add_outing.html', context)
+
+def add_outing(request):
+    return redirect(reverse('movies:watch'))

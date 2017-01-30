@@ -10,5 +10,6 @@ urlpatterns = [
     url(r'^movie/(?P<id>\d+)$', views.showMovie, name="showMovie"),
     url(r'^delete/(?P<id>\d+)$', views.delete, name="delete"),
     url(r'^create_review/(?P<id>\d+)$', views.create_review, name="create_review"),
+    url(r'^add$', views.add, name="add"),
     url(r'^add_outing$', views.add_outing, name="add_outing")
 ]

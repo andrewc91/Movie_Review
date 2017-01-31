@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, HttpResponse
 from django.core.urlresolvers import reverse
 from ..login_app.models import User
-from .models import Director, Movie, Review, Outing
+from .models import Director, Movie, Review, Outing, Comment
 from django.contrib import messages
 
 # Create your views here.

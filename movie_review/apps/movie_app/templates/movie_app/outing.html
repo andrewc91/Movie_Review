@@ -33,7 +33,19 @@
         {% for group in groups %}
           <h3>{{group.first_name}} {{group.last_name}}</h3>
         {% endfor %}
-
+      <br>
+      <h1>Comments:</h1>
+        <form class="form-horizontal" action="#" method="POST">
+          {% csrf_token %}
+          <div class="form-group">
+            <label class="col-sm-1 control-label">Comments:</label>
+            <div class="col-sm-4">
+              <textarea class="form-control" name="comment"></textarea>
+            </div>
+          </div>
+          <input type="submit" class="btn btn-info" value="Add Comment">
+        </form>
+        <h1></h1>
     </div>
   </body>
 </html>

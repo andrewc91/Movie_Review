@@ -17,7 +17,7 @@ from django.conf.urls import url, include
 from django.contrib import admin
 
 from apps.login_app.models import User
-from apps.movie_app.models import Movie, Director, Review, Outing
+from apps.movie_app.models import Movie, Director, Review, Outing, Comment
 
 class UserAdmin(admin.ModelAdmin):
     pass
@@ -38,6 +38,10 @@ admin.site.register(Review, ReviewAdmin)
 class OutingAdmin(admin.ModelAdmin):
     pass
 admin.site.register(Outing, OutingAdmin)
+
+class CommentAdmin(admin.ModelAdmin):
+    pass
+admin.site.register(Comment, CommentAdmin)
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),

@@ -34,11 +34,20 @@
           <h3>{{group.first_name}} {{group.last_name}}</h3>
         {% endfor %}
       <br>
+
+      {% if messages %}
+        {% for message in messages %}
+          {% if "comments" in message.tags %}
+            <li>{{message}}</li>
+          {% endif %}
+        {% endfor %}
+      {% endif %}
+
       <h1>Comments:</h1>
-        <form class="form-horizontal" action="#" method="POST">
+        <form class="form-horizontal" action="{% url 'movies:add_comment' id=outing.id %}" method="POST">
           {% csrf_token %}
           <div class="form-group">
-            <label class="col-sm-1 control-label">Comments:</label>
+            <label class="col-sm-1 control-label">Comment:</label>
             <div class="col-sm-4">
               <textarea class="form-control" name="comment"></textarea>
             </div>

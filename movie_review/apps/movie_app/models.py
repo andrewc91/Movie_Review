@@ -121,18 +121,23 @@ class Outing(models.Model):
     objects = OutingManager()
 
 class CommentManager(models.Manager):
-    def comment_validator(self, input):
+    def comment_validator(self, input, user, id):
         errors = []
 
-        if len(input['comment']) == 0:
+        if len(input['comment']) < 1:
             errors.append("Please do not leave comment field blank")
 
         if len(errors) == 0:
-            pass
+            user = User.objects.get(id=user)
+            outing = Outing.objects.get(id=id)
+            text = Comment.objects.create(text=input['comment'], user=user, outing=outing)
+            return (True, text, id)
+        else:
+            return (False, errors)
 
 
 class Comment(models.Model):
-    text = models.CharField(max_length=255)
+    text = models.TextField(max_length=255)
     user = models.ForeignKey(User)
     outing = models.ForeignKey(Outing)
     created_at = models.DateTimeField(auto_now_add=True)

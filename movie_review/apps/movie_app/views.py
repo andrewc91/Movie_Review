@@ -163,3 +163,15 @@ def delete(request, id):
     Outing.objects.get(id=id).delete()
     messages.success(request, "Successfully Deleted")
     return redirect(reverse('movies:watch'))
+
+def add_comment(request, id):
+    if request.method == 'POST':
+        result = Comment.objects.comment_validator(request.POST, request.session['user_id'], id)
+
+        if result[0] == True:
+            messages.success(request, "Successfully added comment")
+            return redirect(reverse('movies:outing', kwargs={'id': id}))
+        else:
+            for errors in result[1]:
+                messages.error(request, errors, extra_tags="comments")
+                return redirect(reverse('movies:outing', kwargs={'id': id}))

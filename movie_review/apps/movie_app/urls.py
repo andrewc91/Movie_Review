@@ -15,5 +15,6 @@ urlpatterns = [
     url(r'^outing/(?P<id>\d+)$', views.outing, name="outing"),
     url(r'^outing/join/(?P<id>\d+)$', views.outing_join, name="outing_join"),
     url(r'^cancel/(?P<id>\d+)$', views.cancel, name="cancel"),
-    url(r'^delete/(?P<id>\d+)$', views.delete, name="delete")
+    url(r'^delete/(?P<id>\d+)$', views.delete, name="delete"),
+    url(r'^add_comment/(?P<id>\d+)$', views.add_comment, name="add_comment")
 ]

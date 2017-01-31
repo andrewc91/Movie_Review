@@ -60,6 +60,9 @@
       {% for comment in comments %}
         <h3>{{comment.user.first_name}} says: {{comment.text}}</h3>
         <h4>Posted on: {{comment.created_at}}</h4>
+        {% if user == comment.user %}
+        <a class="btn btn-danger" href="{% url 'movies:delete_comment' id=comment.id %}">Delete Comment</a>
+        {% endif %}
         <hr>
       {% endfor %}
     </div>

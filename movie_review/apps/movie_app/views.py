@@ -141,6 +141,7 @@ def outing(request, id):
     outing = Outing.objects.get(id=id)
     comments = Comment.objects.filter(outing=outing)
     context = {
+        'user': User.objects.get(id=request.session['user_id']),
         'outing': outing,
         'groups': outing.group.all(),
         'comments': comments,
@@ -177,3 +178,9 @@ def add_comment(request, id):
             for errors in result[1]:
                 messages.error(request, errors, extra_tags="comments")
                 return redirect(reverse('movies:outing', kwargs={'id': id}))
+
+def delete_comment(request, id):
+    comment = Comment.objects.get(id=id)
+    comment.delete()
+    msg = messages.success(request, "Successfully Deleted Comment")
+    return redirect(reverse('movies:outing', kwargs={'id':comment.outing.id}))

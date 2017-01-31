@@ -41,7 +41,11 @@
             <td>{{outing.location}}</td>
             <td>{{outing.date}}</td>
             <td>{{outing.theater}}</td>
-            <td>JOIN</td>
+            {% if user == outing.user %}
+            <td><a href="{% url 'movies:delete' outing.id %}">Delete</a></td>
+            {% else %}
+            <td><a href="{% url 'movies:cancel' outing.id %}">Remove</a></td>
+            {% endif %}
           </tr>
           {% endfor %}
         </tbody>
@@ -72,13 +76,6 @@
           {% endfor %}
         </tbody>
       </table>
-
-
-
-
-
-
-
 
     </div>
   </body>

@@ -151,3 +151,15 @@ def outing_join(request, id):
     result = Outing.objects.join_outing(id, user)
     messages.success(request, result[1])
     return redirect(reverse('movies:watch'))
+
+def cancel(request, id):
+    user = User.objects.get(id=request.session['user_id'])
+    outing = Outing.objects.get(id=id)
+    outing.group.remove(user)
+    messages.success(request, "Successfully Cancelled")
+    return redirect(reverse('movies:watch'))
+
+def delete(request, id):
+    Outing.objects.get(id=id).delete()
+    messages.success(request, "Successfully Deleted")
+    return redirect(reverse('movies:watch'))

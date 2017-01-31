@@ -37,7 +37,7 @@
           {% for outing in outings %}
           <tr>
             <td>{{outing.user.first_name}} {{outing.user.last_name}}</td>
-            <td>{{outing.movie}}</td>
+            <td><a href="{% url 'movies:outing' outing.id %}">{{outing.movie}}</a></td>
             <td>{{outing.location}}</td>
             <td>{{outing.date}}</td>
             <td>{{outing.theater}}</td>
@@ -63,7 +63,7 @@
           {% for user in users %}
           <tr>
             <td>{{user.user.first_name}} {{user.user.last_name}}</td>
-            <td>{{user.movie}}</td>
+            <td><a href="{% url 'movies:outing' user.id %}">{{user.movie}}</a></td>
             <td>{{user.location}}</td>
             <td>{{user.date}}</td>
             <td>{{user.theater}}</td>

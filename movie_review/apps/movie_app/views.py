@@ -135,4 +135,12 @@ def add_outing(request):
     return redirect(reverse('movies:watch'))
 
 def outing(request, id):
-    return render(request, 'movie_app/outing.html')
+    if not 'user_id' in request.session:
+        return redirect(reverse('users:index'))
+
+    outing = Outing.objects.get(id=id)
+    context = {
+        'outing': outing,
+        'groups': outing.group.all()
+    }
+    return render(request, 'movie_app/outing.html', context)

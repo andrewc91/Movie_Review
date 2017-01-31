@@ -20,6 +20,20 @@
       <a class="btn btn-success" href="{% url 'movies:watch' %}">Watch Movie?</a>
       <a class="btn btn-success" href="{% url 'movies:add' %}">Add a Movie Night Out</a>
       <a class="btn btn-danger" href="{% url 'users:logout' %}">Log Out</a>
+
+      {% if outing %}
+      <h1>Movie: {{outing.movie}}</h1>
+      <h3>Planned By: {{outing.user.first_name}} {{outing.user.last_name}}</h3>
+      <h3>Location: {{outing.location}}</h3>
+      <h3>Date: {{outing.date}}</h3>
+      <h3>Theater: {{outing.theater}}</h3>
+      {% endif %}
+
+      <h1>Everyone in this outing:<h1>
+        {% for group in groups %}
+          <h3>{{group.first_name}} {{group.last_name}}</h3>
+        {% endfor %}
+
     </div>
   </body>
 </html>

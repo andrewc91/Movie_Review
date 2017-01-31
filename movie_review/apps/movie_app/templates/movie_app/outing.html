@@ -13,11 +13,11 @@
   <body>
 
     <div class="container">
-      <h1>THIS IS A OUTING PAGE</h1>
+      <h1></h1>
       <a class="btn btn-primary" href="{% url 'movies:index' %}">Home</a>
       <a class="btn btn-info" href="{% url 'movies:new' %}">Add Movie and Review</a>
       <a class="btn btn-info" href="{% url 'movies:show' user.id %}">Your Reviews</a>
-      <a class="btn btn-success" href="{% url 'movies:watch' %}">Watch Movie?</a>
+      <a class="btn btn-success" href="{% url 'movies:watch' %}">Watch Movie</a>
       <a class="btn btn-success" href="{% url 'movies:add' %}">Add a Movie Night Out</a>
       <a class="btn btn-danger" href="{% url 'users:logout' %}">Log Out</a>
 

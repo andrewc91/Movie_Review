@@ -102,8 +102,12 @@ def watch(request):
     if not 'user_id' in request.session:
         return redirect(reverse('users:index'))
 
+    user = User.objects.get(id=request.session['user_id'])
     context = {
-        'user': User.objects.get(id=request.session['user_id']),
+        'user': user,
+        'outings': Outing.objects.all().filter(group=user),
+        'users': Outing.objects.all().exclude(group=user),
+
     }
     return render(request, 'movie_app/watch.html', context)
 
@@ -128,6 +132,4 @@ def add_outing(request):
             for error in result[1]:
                 messages.error(request, error, extra_tags="outing")
             return redirect(reverse('movies:add'))
-
-
     return redirect(reverse('movies:watch'))

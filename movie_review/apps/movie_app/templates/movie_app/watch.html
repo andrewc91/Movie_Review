@@ -67,7 +67,7 @@
             <td>{{user.location}}</td>
             <td>{{user.date}}</td>
             <td>{{user.theater}}</td>
-            <td>Join Or Cancel</td>
+            <td><a href="{% url 'movies:outing_join' user.id %}">Join This Group</a></td>
           </tr>
           {% endfor %}
         </tbody>

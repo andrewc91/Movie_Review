@@ -144,3 +144,10 @@ def outing(request, id):
         'groups': outing.group.all()
     }
     return render(request, 'movie_app/outing.html', context)
+
+
+def outing_join(request, id):
+    user = User.objects.get(id=request.session['user_id'])
+    result = Outing.objects.join_outing(id, user)
+    messages.success(request, result[1])
+    return redirect(reverse('movies:watch'))

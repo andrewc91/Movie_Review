@@ -104,6 +104,11 @@ class OutingManager(models.Manager):
         else:
             return (False, errors)
 
+    def join_outing(self, id, user):
+        outing = Outing.objects.get(id=id)
+        outing.group.add(user)
+        return (True, "Successfully added trip into your schedule")
+
 class Outing(models.Model):
     movie = models.CharField(max_length=100)
     location = models.CharField(max_length=100)

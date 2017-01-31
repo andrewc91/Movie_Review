@@ -133,3 +133,6 @@ def add_outing(request):
                 messages.error(request, error, extra_tags="outing")
             return redirect(reverse('movies:add'))
     return redirect(reverse('movies:watch'))
+
+def outing(request, id):
+    return render(request, 'movie_app/outing.html')

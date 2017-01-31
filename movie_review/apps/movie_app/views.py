@@ -139,9 +139,11 @@ def outing(request, id):
         return redirect(reverse('users:index'))
 
     outing = Outing.objects.get(id=id)
+    comments = Comment.objects.filter(outing=outing)
     context = {
         'outing': outing,
-        'groups': outing.group.all()
+        'groups': outing.group.all(),
+        'comments': comments,
     }
     return render(request, 'movie_app/outing.html', context)
 

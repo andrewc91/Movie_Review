@@ -52,9 +52,16 @@
               <textarea class="form-control" name="comment"></textarea>
             </div>
           </div>
+          <a class="btn btn-info" href="{% url 'movies:watch' %}">Go Back</a>
           <input type="submit" class="btn btn-info" value="Add Comment">
         </form>
-        <h1></h1>
+      <h1></h1>
+
+      {% for comment in comments %}
+        <h3>{{comment.user.first_name}} says: {{comment.text}}</h3>
+        <h4>Posted on: {{comment.created_at}}</h4>
+        <hr>
+      {% endfor %}
     </div>
   </body>
 </html>

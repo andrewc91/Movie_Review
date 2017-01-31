@@ -30,7 +30,7 @@
             <th>Location</th>
             <th>Date</th>
             <th>Theater</th>
-            <th>Remove?</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
@@ -44,7 +44,7 @@
             {% if user == outing.user %}
             <td><a href="{% url 'movies:delete' outing.id %}">Delete</a></td>
             {% else %}
-            <td><a href="{% url 'movies:cancel' outing.id %}">Remove</a></td>
+            <td><a href="{% url 'movies:cancel' outing.id %}">Leave This Group</a></td>
             {% endif %}
           </tr>
           {% endfor %}

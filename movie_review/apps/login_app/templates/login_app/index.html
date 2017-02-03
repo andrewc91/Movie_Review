@@ -18,13 +18,15 @@
      <div class="container">
        <h2 style="margin-left: 100px; margin-bottom: 25px">Login Here Please</h2>
 
-       {% if messages %}
-         {% for message in messages %}
-           {% if "login" in message.tags %}
-             <li>{{message}}</li>
-           {% endif %}
-         {% endfor %}
-       {% endif %}
+       <div class="messages">
+         {% if messages %}
+           {% for message in messages %}
+             {% if "login" in message.tags %}
+               <li>{{message}}</li>
+             {% endif %}
+           {% endfor %}
+         {% endif %}
+       </div>
 
        <form class="form-horizontal" action="/login" method="POST">
          {% csrf_token %}

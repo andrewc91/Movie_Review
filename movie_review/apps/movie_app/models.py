@@ -135,7 +135,6 @@ class CommentManager(models.Manager):
         else:
             return (False, errors)
 
-
 class Comment(models.Model):
     text = models.TextField(max_length=255)
     user = models.ForeignKey(User)

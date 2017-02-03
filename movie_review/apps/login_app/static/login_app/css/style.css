@@ -1,0 +1,12 @@
+.messages {
+  height: auto;
+  width: 350px;
+  padding: 10px;
+  margin-left: 670px;
+  margin-top: 25px;
+  position: absolute;
+}
+
+.container {
+  margin-top: 50px;
+}
